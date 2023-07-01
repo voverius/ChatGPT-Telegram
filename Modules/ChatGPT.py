@@ -13,7 +13,7 @@ class ChatGPT:
     # Public
     sessionTokens = 0                   # Integer       How many tokens used in the session
     conversationTokens = 0              # Integer       How many tokens used in this chat
-    age = dt.timedelta(minutes=1)        # TimeDelta     Memory cut-off
+    age = dt.timedelta(hours=2)         # TimeDelta     Memory cut-off
 
     # Private
     _character = ''                     # String        Prompt for how chat should behave
