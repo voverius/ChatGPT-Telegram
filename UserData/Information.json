@@ -1,0 +1,17 @@
+
+{
+  "logins": {
+    "openai": "",
+
+    "telegram": {
+      "token": "",
+      "users": {
+        "": {
+          "username": "",
+          "level": "admin",
+          "group_permissions": true
+        }
+      }
+    }
+  }
+}
