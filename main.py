@@ -10,7 +10,7 @@ from Modules.Telegram import *
 def main():
 
     root = os.path.dirname(os.path.abspath(__file__))
-    path = Path(f'{root}\\UserData\\Information.json')
+    path = os.path.join(root, 'UserData', 'Information.json')
 
     with open(path, 'r') as fileObject:
         info = json.load(fileObject)
