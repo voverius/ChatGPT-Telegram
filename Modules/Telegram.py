@@ -12,6 +12,9 @@ class TelegramGPT:
     # Tracking
     fn = 'TelegramGPT'
 
+    # Public
+    token_names = ['TELEGRAM_BOT_TOKEN', 'APPROVED_USERS'] 
+
     # Private
     _users = None                       # List      IDs of approved users
     _character = False                  # Boolean   Flag that character needs to be changed
@@ -28,12 +31,21 @@ class TelegramGPT:
     # #############################################################################################
     """
 
-    def __init__(self, token, users, gpt):
+    def __init__(self, credo, gpt):
+
+        """
+        :param credo:           Class       Credentials class with token value
+        :param gpt:             Class       ChatGPT instance
+        
+        -------------------------------------------------------------------------------------------
+        Description:            This initializes the TelegramGPT instance.
+        """
 
         self.gpt = gpt
-        self.app = Application.builder().token(token).build()
+        self.app = Application.builder().token(credo.credentials[self.token_names[0]]).build()
 
-        self.users = {} if not isinstance(users, dict) else users
+        users = credo.credentials[self.token_names[1]]
+        self.users = [] if not isinstance(users, list) else users
 
         self.app.add_handler(CommandHandler('help', self.Help))
         self.app.add_handler(CommandHandler('start', self.Start))

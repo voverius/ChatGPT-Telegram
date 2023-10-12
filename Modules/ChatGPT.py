@@ -14,6 +14,7 @@ class ChatGPT:
     sessionTokens = 0                   # Integer       How many tokens used in the session
     conversationTokens = 0              # Integer       How many tokens used in this chat
     age = dt.timedelta(hours=2)         # TimeDelta     Memory cut-off
+    token_names = ['OPENAI_KEY']        # List          Required keys
 
     # Private
     _character = ''                     # String        Prompt for how chat should behave
@@ -27,16 +28,16 @@ class ChatGPT:
     # #############################################################################################
     """
 
-    def __init__(self, token):
+    def __init__(self, credo):
 
         """
-        :param token:           String      Valid OpenAI token
+        :param credo:           Class       Credentials class with token value
 
         -------------------------------------------------------------------------------------------
         Description:            This initializes the ChatGPT instance.
         """
 
-        openai.api_key = token
+        openai.api_key = credo.credentials[self.token_names[0]]
         self.Reset()
 
     # --------------------------------------   CALL   ---------------------------------------------
@@ -141,8 +142,8 @@ class ChatGPT:
         return
 
     def StandardCharacter(self):
-        self._character = 'You are an assistant worthy of a billionaire. You are smart, witty ' \
-                          'and most importantly you are are brief, exact and concise.'
+        self._character = 'You are an assistant worthy of a european billionaire. You are smart, '\
+                          'witty and most importantly you are are brief, exact and concise.'
         return
 
     def ClearMemory(self):
